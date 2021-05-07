@@ -1,0 +1,116 @@
+
+
+.wrapper h3{
+    font-size: 24px;
+    color: #111111;
+    margin-bottom: 20px;
+}
+
+.recipes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px 20px;
+    
+}
+
+.recipe {
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+.recipe:hover{
+    background-color:#fbdfdbd2;
+    border-radius: 15px;
+    transition: 600ms;
+}
+
+.recipe-title p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #111111;
+    margin-top: 20px;
+}
+
+.recipe-title,
+.recipe-author {
+    margin-left: 8px;
+    
+}
+
+.recipe-author p {
+    font-size: 14px;
+    color: #777777;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.recipe-image img {
+    width: 300px;
+    height: 140px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+/* indiividual recipe page */
+.current-recipe .recipe-image img {
+    width: 940px;
+    height: 280px;
+    border-radius: 15px;
+}
+
+.current-recipe .recipe-title p {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 50px;
+}
+
+.current-recipe .recipe-author p {
+    text-align: center;
+    margin-top: 4px;
+    font-size: 20px;
+}
+
+.text-content{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.text-content h2 {
+    font-size: 24px;
+    color: #111111;
+}
+
+.text-content p {
+    font-size: 12px;
+    color: #999999;
+    font-weight: bold;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.cooking-process {
+    margin-top: 50px;
+}
+
+.cooking-process div + div {
+    margin-top: 39px;
+}
+
+.ingredients ul,
+.preparation ol,
+.information p.info {
+    font-size: 18px;
+    color: #444444;
+    line-height: 28px;
+}
+
+.ingredients ul.hidden,
+.preparation ol.hidden,
+.information p.info.hidden{
+    display: none;
+}
+
+.information p.info {
+    text-align:justify;
+}

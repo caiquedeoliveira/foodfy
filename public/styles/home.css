@@ -1,0 +1,49 @@
+
+.intro{
+    background: #FBDFDB;
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 940px;
+    height: 366px;
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.intro-text {
+    align-items: center;
+    margin-top: 117px;
+    margin-left: 60px;
+}
+
+
+
+.intro-text .intro-text-title h2 {
+    font-size: 32px;
+    color: #111111;
+    line-height: 42px;
+    margin-bottom: 10px;
+}
+
+.intro-text .intro-text-paragraph p {
+    opacity: 0.7;
+    font-size: 18px;
+    color: #000000;
+    line-height: 28px;
+    font-weight: 400;
+    text-align:initial;
+    width: 316px;
+}
+
+.intro-image{
+    margin-left: 150px;
+}
+
+.intro-image img {
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+
