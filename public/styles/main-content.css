@@ -14,7 +14,6 @@ body {
 
 body {
     font-family: 'Roboto', sans-serif;
-    
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -23,7 +22,6 @@ body {
 .all-content {
     max-width: 940px;
     margin: 0 auto 50px;
-
 }
 
 .menu {
@@ -47,6 +45,26 @@ body {
     font-size: 16px;
     font-weight: 400;
     line-height: 26px;
+    position: relative;
+}
+
+.menu-links a::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color:black;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+}
+
+.menu-links a:hover::after{
+    width: 100%;
+    transition: width 500ms ease-in-out;
+}
+
+.menu-links a.active{
+    font-weight: bold;
 }
 
 .menu-links .link-about {
@@ -78,4 +96,21 @@ body {
 
 .not-found h1 {
     text-align: center;
+}
+
+/* ADMIN AREA */
+
+.admin-area {
+    background-color: #111111;
+    width: 100%;   
+}
+
+.admin-area .menu-logo {
+    max-width: 940px;
+    margin: 0px 385px;
+    align-items: left;
+}
+
+.admin-area .menu-logo img {
+    text-align: start;
 }

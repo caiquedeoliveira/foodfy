@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}{% endblock %}
+    <link rel="stylesheet" href="/styles/main-content.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+
+</head>
+<body>
+    <header class="admin-area">
+        <div class="menu">
+            <div class="menu-logo">
+                <img class="logo" src="/assets/logo-admin.png" alt="Logo Foodfy">
+            </div>
+        </div>
+    </header>
+
+    <div class="all-content">
+    {% block content %}{% endblock %}
+    </div>
+      
+    <script src="/scripts/admin-scripts.js"></script>
+</body>
+</html>

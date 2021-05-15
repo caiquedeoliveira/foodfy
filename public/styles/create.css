@@ -1,0 +1,65 @@
+form {
+    width: 940px;
+    margin: 0 auto;
+}
+
+form fieldset:nth-child(1) {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form fieldset:nth-child(1) button {
+    background-color:#6558C3; 
+    padding: 9px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+form fieldset:nth-child(2) {
+    margin-top: 30px;
+}
+
+form fieldset:nth-child(2) .item legend {
+    font-size: 16px;
+    font-weight: bold;
+    color: #111111;
+    margin-bottom: 10px;
+}
+
+.item {
+    margin-bottom: 30px;
+}
+
+form fieldset:nth-child(2) .item input,
+form fieldset:nth-child(2) .item textarea {
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    width: 100%;
+    padding: 16px;
+    outline: none;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}
+
+form fieldset:nth-child(2) .item p {
+    margin-top: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #6558C3;
+    cursor: pointer;
+}
+
+form fieldset:nth-child(2) .item p:hover {
+    color: #3f2ebd;
+    transition: 400ms;
+}
+

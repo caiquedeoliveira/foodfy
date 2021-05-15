@@ -114,3 +114,65 @@
 .information p.info {
     text-align:justify;
 }
+
+
+/* ADMINISTRAÇÃO */
+
+h2{
+    margin: 50px 0px 30px;
+}
+
+.recipe-adm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.recipe-adm .recipe {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0;
+}
+
+.recipe-adm .recipe:hover{
+    background-color: unset;
+    border-radius: unset;
+    cursor: unset;
+}
+
+.recipe-adm .recipe-image img {
+    width: 172px;
+    height: 90px;
+    border-radius: 8.57px;
+    margin-right: 20px;   
+}
+
+.recipe-adm .recipe .recipe-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 300px;
+}
+
+.recipe-adm .recipe .recipe-info .recipe-name h3 {
+    font-weight: 500;
+}
+
+.recipe-adm .recipe .recipe-info .recipe-author p {
+    margin-left: -6px;
+    font-weight: 500;
+}
+
+.recipe-adm .recipe .recipe-info .recipe-update p {
+    font-size: 14px;
+    color: #6558C3;
+    font-weight: bold;
+    line-height: 24px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.recipe-adm .recipe .recipe-info .recipe-update p:hover {
+    color: #3f2ebd;
+    transition: 400ms;
+}

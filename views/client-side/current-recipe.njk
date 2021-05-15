@@ -1,4 +1,4 @@
-{% extends "layout.njk" %}
+{% extends "client-side/layout.njk" %}
 
     {% block head%}
     <title>{{items.title}} | Foodfy</title>
@@ -7,7 +7,7 @@
 
     {% block nav%}
     <a href="/about" class="link-about">Sobre</a>
-    <a href="/recipes" class="link-recipes"><strong>Receitas</strong></a>
+    <a href="/recipes" class="link-recipes">Receitas</a>
     {% endblock %}
 
 {% block content %}

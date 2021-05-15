@@ -1,4 +1,4 @@
-{% extends "layout.njk" %}
+{% extends "client-side/layout.njk" %}
 
 {% block head%}
     <title>Home | Foodfy</title>
@@ -10,10 +10,10 @@
     <div class="intro">
         <div class="intro-text">
             <div class="intro-text-title">
-                <h2>{{about.description1}}</h2>
+                <h2>As melhores receitas</h2>
             </div>
             <div class="intro-text-paragraph">
-                <p>{{about.description2}}</p>
+                <p>Aprenda a construir os melhores pratos com receitas criadas por profissionais do mundo inteiro.</p>
             </div>
         </div>
         <div class="intro-image">
@@ -38,5 +38,5 @@
             {% endfor %}
         </div>
     </div>
-    <script src="/scripts.js"></script>
+    
 {% endblock %}

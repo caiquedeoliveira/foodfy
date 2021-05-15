@@ -1,0 +1,40 @@
+{% extends 'server-side/layout.njk' %}
+
+{% block head%}
+    <title>Crie receitas | Foodfy</title>
+    <link rel="stylesheet" href="/styles/create.css">
+{% endblock %}
+
+{% block content %}
+
+<form action="/admin/recipes" method="post">
+    <fieldset>
+        <h2>Criando receita</h2>
+        <button type="submit">Salvar receita</button>
+    </fieldset>
+
+    <fieldset>
+        <div class="item">
+            <legend>Imagem da receita</legend>
+            <input type="url" name="url">
+        </div>
+
+        <div class="item">
+            <legend>Ingredientes</legend>
+            <input type="text" name="ingredient">
+            <p class="new-ingredient">Adicionar novo ingrediente</p>
+        </div>
+
+        <div class="item">
+            <legend>Modo de preparo</legend>
+            <input type="text" name="preparation">
+            <p class="new-step">Adicionar novo passo</p>
+        </div>
+
+        <div class="item">
+            <legend>Informações adicionais</legend>
+            <textarea name="information" cols="30" rows="10"></textarea>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
