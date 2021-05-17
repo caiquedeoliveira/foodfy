@@ -109,6 +109,7 @@ body {
     max-width: 940px;
     margin: 0px 385px;
     align-items: left;
+    cursor: unset;
 }
 
 .admin-area .menu-logo img {

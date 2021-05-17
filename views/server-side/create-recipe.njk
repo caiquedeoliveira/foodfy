@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<form action="/admin/recipes" method="post">
+<form action="/" method="post">
     <fieldset>
         <h2>Criando receita</h2>
         <button type="submit">Salvar receita</button>
@@ -16,19 +16,28 @@
     <fieldset>
         <div class="item">
             <legend>Imagem da receita</legend>
-            <input type="url" name="url">
+            <input type="url" name="recipe-image">
+        </div>
+
+        <div class="item">
+            <legend>Nome da receita</legend>
+            <input type="text" name="recipe-name">
         </div>
 
         <div class="item">
             <legend>Ingredientes</legend>
-            <input type="text" name="ingredient">
-            <p class="new-ingredient">Adicionar novo ingrediente</p>
+                <div class="ingredients">
+                <input type="text" name="ingredients[]">
+                </div>
+            <p class="add-ingredient">Adicionar novo ingrediente</p>
         </div>
 
         <div class="item">
             <legend>Modo de preparo</legend>
-            <input type="text" name="preparation">
-            <p class="new-step">Adicionar novo passo</p>
+                <div class="preparations">
+                    <input type="text" name="preparations[]">
+                </div>
+            <p class="add-step">Adicionar novo passo</p>
         </div>
 
         <div class="item">
@@ -37,4 +46,6 @@
         </div>
     </fieldset>
 </form>
+
+<script src="/scripts/admin-scripts.js"></script>
 {% endblock %}
