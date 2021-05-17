@@ -1,7 +1,7 @@
 {% extends "client-side/layout.njk" %}
 
     {% block head%}
-    <title>{{recipes.title}} | Foodfy</title>
+    <title>{{items.title}} | Foodfy</title>
     <link rel="stylesheet" href="/styles/recipes.css">
     {% endblock %}
 
@@ -12,6 +12,10 @@
 
 {% block content %}
     <div class="current-recipe">
+        <div class="recipe-presentation">
+            <h2>Receita: {{ recipes.title}}</h2>
+            <a href="#">Editar receita</a>
+        </div>
         <div class="recipe-image">
             <img src="{{ recipes.image_url }}" alt="{{ recipes.title }}"></div>
             <div class="recipe-title">
@@ -26,7 +30,6 @@
         <div class="ingredients">
             <div class="text-content">
                 <h2>Ingredientes</h2>
-                <p>ESCONDER</p>
             </div>
             <ul class="recipe_info">
                 {%for ingredients in recipes.ingredients%}
@@ -37,7 +40,6 @@
         <div class="preparation">
             <div class="text-content">
                 <h2>Modo de preparo</h2>
-                <p>ESCONDER</p>
             </div>
                 <ol class="recipe_info">
                     {% for preparation in recipes.preparations%}
@@ -48,12 +50,8 @@
         <div class="information">
             <div class="text-content">
                 <h2>Informações adicionais</h2>
-                <p>ESCONDER</p>
             </div>
             <p class="info recipe_info">{{recipes.information}}</p>
         </div>
     </div>
-
-    <script src="/scripts/current-recipe.js"></script>
-    
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'server-side/layout.njk' %}
 
 {% block head%}
-    <title>Crie receitas | Foodfy</title>
+    <title>Edite receitas | Foodfy</title>
     <link rel="stylesheet" href="/styles/create.css">
 {% endblock %}
 
@@ -9,8 +9,11 @@
 
 <form action="/admin/recipes" method="post">
     <fieldset>
-        <h2>Criando receita</h2>
-        <button type="submit">Salvar receita</button>
+        <h2>Editando receita</h2>
+        <div class="edit-control">
+            <a href="">Deletar</a>
+            <button type="submit">Salvar receita</button>
+        </div>
     </fieldset>
 
     {% include 'server-side/fields.njk' %}

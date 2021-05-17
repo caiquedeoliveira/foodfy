@@ -14,5 +14,10 @@ routes.get("/", (req, res)=>{
 
     .get("/admin/recipes", recipes.index)
     .get("/admin/recipes/create", recipes.create)
+    .get("/admin/recipes/:id", recipes.show)
+    .get("/admin/recipes/:id/edit", recipes.edit)
+
+    .post("/admin/recipes", recipes.post)
+
 
 module.exports = routes

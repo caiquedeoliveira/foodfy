@@ -118,7 +118,7 @@
 
 /* ADMINISTRAÇÃO */
 
-h2{
+h2.admin{
     margin: 50px 0px 30px;
 }
 
@@ -144,7 +144,7 @@ h2{
     width: 172px;
     height: 90px;
     border-radius: 8.57px;
-    margin-right: 20px;   
+    margin-right: 20px;  
 }
 
 .recipe-adm .recipe .recipe-info {
@@ -175,4 +175,21 @@ h2{
 .recipe-adm .recipe .recipe-info .recipe-update p:hover {
     color: #3f2ebd;
     transition: 400ms;
+}
+
+.recipe-presentation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.recipe-presentation a {
+    font-size: 16px;
+    color: #FFFFFF;
+    background: #6558C3;
+    border-radius: 4px;
+    padding: 9px 20px;
+    text-decoration: none;
+    font-weight: 500;
 }

@@ -23,16 +23,16 @@
     <div class="wrapper">
         <h3>Mais acessadas</h3>
         <div class="recipes">
-            {%for item in items%}
+            {%for recipe in recipes %}
             <div class="recipe">
                 <div class="recipe-image">
-                    <img src="{{item.image}}" alt="{{item.title}}">
+                    <img src="{{recipe.image_url}}" alt="{{recipe.title}}">
                 </div>
                 <div class="recipe-title">
-                    <p>{{item.title}}</p>
+                    <p>{{recipe.title}}</p>
                 </div>
                 <div class="recipe-author">
-                    <p>por {{item.author}}</p>
+                    <p>por {{recipe.chef}}</p>
                 </div>
             </div>
             {% endfor %}

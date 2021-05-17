@@ -6,111 +6,28 @@
 {% endblock %}
 
 {% block content %}
-<h2>Gerenciar receitas</h2>
+<h2 class="admin">Gerenciar receitas</h2>
 
 <section class="recipe-adm">
+
+    {% for recipe in recipes %}
     <div class="recipe admin">
         <div class="recipe-image">
-            <img src="/assets/burger.png" alt="">
+            <img src="{{recipe.image_url}}" alt="Imagem de {{recipe.title}}">
         </div>
         <div class="recipe-info">
             <div class="recipe-name">
-                <h3>Triplo bacon burger</h3>
+                <h3>{{recipe.title}}</h3>
             </div>
             <div class="recipe-author">
-                <p>por Jorge Relato</p>
+                <p>por {{recipe.chef}}</p>
             </div>
             <div class="recipe-update">
                 <p>Visualizar</p>
             </div>
         </div>
     </div>
+    {% endfor %}
 
-     <div class="recipe">
-        <div class="recipe-image">
-            <img src="/assets/burger.png" alt="">
-        </div>
-        <div class="recipe-info">
-            <div class="recipe-name">
-                <h3>Asinhas de frango ao barbecue</h3>
-            </div>
-            <div class="recipe-author">
-                <p>por Jorge Relato</p>
-            </div>
-            <div class="recipe-update">
-                <p>Visualizar</p>
-            </div>
-        </div>
-    </div>
-
-     <div class="recipe">
-        <div class="recipe-image">
-            <img src="/assets/burger.png" alt="">
-        </div>
-        <div class="recipe-info">
-            <div class="recipe-name">
-                <h3>Triplo bacon burger</h3>
-            </div>
-            <div class="recipe-author">
-                <p>por Jorge Relato</p>
-            </div>
-            <div class="recipe-update">
-                <p>Visualizar</p>
-            </div>
-        </div>
-    </div>
-
-     <div class="recipe">
-        <div class="recipe-image">
-            <img src="/assets/burger.png" alt="">
-        </div>
-        <div class="recipe-info">
-            <div class="recipe-name">
-                <h3>Triplo bacon burger</h3>
-            </div>
-            <div class="recipe-author">
-                <p>por Jorge Relato</p>
-            </div>
-            <div class="recipe-update">
-                <p>Visualizar</p>
-            </div>
-        </div>
-    </div>
-
-     <div class="recipe">
-        <div class="recipe-image">
-            <img src="/assets/burger.png" alt="">
-        </div>
-        <div class="recipe-info">
-            <div class="recipe-name">
-                <h3>Asinhas de frango ao barbecue</h3>
-            </div>
-            <div class="recipe-author">
-                <p>por Jorge Relato</p>
-            </div>
-            <div class="recipe-update">
-                <p>Visualizar</p>
-            </div>
-        </div>
-    </div>
-
-     <div class="recipe">
-        <div class="recipe-image">
-            <img src="/assets/burger.png" alt="">
-        </div>
-        <div class="recipe-info">
-            <div class="recipe-name">
-                <h3>Triplo bacon burger</h3>
-            </div>
-            <div class="recipe-author">
-                <p>por Jorge Relato</p>
-            </div>
-            <div class="recipe-update">
-                <p>Visualizar</p>
-            </div>
-        </div>
-    </div>
 </section>
-
-
 {% endblock %}
