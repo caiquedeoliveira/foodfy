@@ -34,3 +34,6 @@ document.querySelector('.delete-buttons p').addEventListener("click", () => {
     modalOverlay.classList.remove('active')
 })
 
+modalOverlay.addEventListener("click", () => {
+    modalOverlay.classList.remove('active')
+})
