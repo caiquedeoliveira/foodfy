@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<form action="/admin/recipes" method="post">
+<form action="/admin/recipes?_method=PUT" method="post">
     <fieldset>
         <h2>Editando receita</h2>
         <div class="edit-control">
@@ -16,7 +16,50 @@
         </div>
     </fieldset>
 
-    {% include 'server-side/fields.njk' %}
+    <fieldset>
+        <div class="item">
+            <legend>Imagem da receita</legend>
+            <input type="url" name="image_url" value="{{recipe.image_url}}">
+        </div>
+
+        <div class="item">
+            <legend>Nome da receita</legend>
+            <input type="text" name="title" value="{{recipe.title}}">
+        </div>
+
+        <div class="item">
+            <legend>Nome do chef</legend>
+            <input type="text" name="chef" value="{{recipe.chef}}">
+        </div>
+
+        <div class="item">
+            <legend>Ingredientes</legend>
+                <div class="ingredients">
+                {% for ingredient in recipe.ingredients %}
+                <input type="text" name="ingredients[]" value="{{ingredient}}">
+               {% endfor %}
+                </div>
+            <p class="add-ingredient">Adicionar novo ingrediente</p>
+        </div>
+
+        <div class="item">
+            <legend>Modo de preparo</legend>
+                <div class="preparations">
+                    {% for prep in recipe.preparations %}
+                    <input type="text" name="preparations[]" value="{{prep}}">
+                    {% endfor %}
+                </div>
+            <p class="add-step">Adicionar novo passo</p>
+        </div>
+
+        <div class="item">
+            <legend>Informações adicionais</legend>
+            <textarea name="informations" cols="30" rows="10">{{recipe.informations}}</textarea>
+        </div>
+    </fieldset>
+
+    <input type="hidden" name="id" value="{{recipe.id}}">
+
 </form>
 
 <script src="/scripts/admin-scripts.js"></script>

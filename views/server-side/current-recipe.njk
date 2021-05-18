@@ -1,7 +1,7 @@
 {% extends "client-side/layout.njk" %}
 
     {% block head%}
-    <title>{{items.title}} | Foodfy</title>
+    <title>{{recipe.title}} | Foodfy</title>
     <link rel="stylesheet" href="/styles/recipes.css">
     {% endblock %}
 
@@ -13,16 +13,16 @@
 {% block content %}
     <div class="current-recipe">
         <div class="recipe-presentation">
-            <h2>Receita: {{ recipes.title}}</h2>
-            <a href="#">Editar receita</a>
+            <h2>Receita: {{recipe.title}}</h2>
+            <a href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
         </div>
         <div class="recipe-image">
-            <img src="{{ recipes.image_url }}" alt="{{ recipes.title }}"></div>
+            <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}"></div>
             <div class="recipe-title">
-                <p>{{ recipes.title }}</p>
+                <p>{{ recipe.title }}</p>
             </div>
             <div class="recipe-author">
-                <p>por {{ recipes.chef }}</p>
+                <p>por {{ recipe.chef }}</p>
             </div>
     </div>
 
@@ -32,7 +32,7 @@
                 <h2>Ingredientes</h2>
             </div>
             <ul class="recipe_info">
-                {%for ingredients in recipes.ingredients%}
+                {%for ingredients in recipe.ingredients%}
                 <li>{{ingredients}}</li>
                 {% endfor %}
             </ul>
@@ -42,7 +42,7 @@
                 <h2>Modo de preparo</h2>
             </div>
                 <ol class="recipe_info">
-                    {% for preparation in recipes.preparations%}
+                    {% for preparation in recipe.preparations%}
                     <li>{{preparation}}</li>
                     {% endfor%}
                 </ol>
@@ -51,7 +51,7 @@
             <div class="text-content">
                 <h2>Informações adicionais</h2>
             </div>
-            <p class="info recipe_info">{{recipes.information}}</p>
+            <p class="info recipe_info">{{recipe.informations}}</p>
         </div>
     </div>
 {% endblock %}

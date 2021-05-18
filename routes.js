@@ -18,6 +18,7 @@ routes.get("/", (req, res)=>{
     .get("/admin/recipes/:id/edit", recipes.edit)
 
     .post("/admin/recipes", recipes.post)
+    .put("/admin/recipes", recipes.put)
 
 
 module.exports = routes

@@ -13,7 +13,45 @@
         <button type="submit">Salvar receita</button>
     </fieldset>
 
-    {% include 'server-side/fields.njk' %}
+    <fieldset>
+        <div class="item">
+            <legend>Imagem da receita</legend>
+            <input type="url" name="image_url" value="{{recipe.image_url}}">
+        </div>
+
+        <div class="item">
+            <legend>Nome da receita</legend>
+            <input type="text" name="title" value="{{recipe.title}}">
+        </div>
+
+        <div class="item">
+            <legend>Nome do chef</legend>
+            <input type="text" name="chef" value="{{recipe.chef}}">
+        </div>
+
+        <div class="item">
+            <legend>Ingredientes</legend>
+                <div class="ingredients">
+                
+                <input type="text" name="ingredients[]" value="{{ingredient}}">
+               
+                </div>
+            <p class="add-ingredient">Adicionar novo ingrediente</p>
+        </div>
+
+        <div class="item">
+            <legend>Modo de preparo</legend>
+                <div class="preparations">
+                    <input type="text" name="preparations[]" value="{{prep}}">
+                </div>
+            <p class="add-step">Adicionar novo passo</p>
+        </div>
+
+        <div class="item">
+            <legend>Informações adicionais</legend>
+            <textarea name="informations" cols="30" rows="10">{{recipe.informations}}</textarea>
+        </div>
+    </fieldset>
 </form>
 
 <script src="/scripts/admin-scripts.js"></script>

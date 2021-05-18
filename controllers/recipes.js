@@ -56,7 +56,24 @@ exports.post = (req, res) => {
         if(req.body[key] == "") return res.send('Please, fill all the fields!')
     }
 
-    database.recipes.push(req.body)
+    let { image_url, title, chef, ingredients, preparations, informations } = req.body
+
+    let id = 1
+    const lastRecipe = database.recipes[database.recipes.length - 1]
+
+    if(lastRecipe){
+        id = lastRecipe.id + 1
+    }
+
+    database.recipes.push({
+        id,
+        image_url,
+        title,
+        chef,
+        ingredients,
+        preparations,
+        informations
+    })
 
     fs.writeFile("data.json", JSON.stringify(database, null, 2), err => {
 
@@ -67,27 +84,64 @@ exports.post = (req, res) => {
 }
 
 exports.show = (req, res) => {
-    const recipesList = [...database.recipes]
-    const recipeIndex = req.params.id
+    
+    const {id} = req.params
 
-    const currentRecipe = recipesList[recipeIndex - 1]
+    const foundRecipe = database.recipes.find(recipe => {
+        return recipe.id == id
+    })
 
-    if(!currentRecipe){
-        return res.render("client-side/not-found")
+    if(!foundRecipe) return res.send('Recipe not found!')
+
+    const recipe = {
+        ...foundRecipe
     }
 
-    return res.render("server-side/current-recipe", {recipes: currentRecipe})
+    return res.render("server-side/current-recipe", {recipe})
 }
 
 exports.edit = (req, res) => {
-    const recipesList = [...database.recipes]
-    const recipeIndex = req.params.id
+    const {id} = req.params
 
-    const currentRecipe = recipesList[recipeIndex - 1]
+    const foundRecipe = database.recipes.find(recipe => {
+        return recipe.id == id
+    })
 
-    if(!currentRecipe){
-        return res.render("client-side/not-found")
+    if(!foundRecipe) return res.send('Recipe not found!')
+
+    const recipe = {
+        ...foundRecipe
     }
 
-    return res.render("server-side/edit", {recipes: currentRecipe})
+    return res.render("server-side/edit", {recipe})
+}
+
+exports.put = (req, res) => {
+
+    const {id} = req.body
+
+    let index = 0
+    const foundRecipe = database.recipes.find((recipe, foundIndex) => {
+        if(recipe.id == id){
+            index = foundIndex
+            return true
+        }
+    })
+
+    if(!foundRecipe) return res.send("Recipe not found!")
+
+    const recipe = {
+        ...foundRecipe,
+        ...req.body,
+        id: Number(req.body.id)
+    }
+
+    database.recipes[index] = recipe
+
+    fs.writeFile("data.json", JSON.stringify(database, null, 2), err => {
+        if(err) return res.send("Write file error")
+
+        return res.redirect(`/admin/recipes/${id}`)
+    })
+
 }
