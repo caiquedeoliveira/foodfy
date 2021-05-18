@@ -145,3 +145,19 @@ exports.put = (req, res) => {
     })
 
 }
+
+exports.delete = (req, res) => {
+    const {id} = req.body
+
+    const filteredRecipes = database.recipes.filter(recipe => {
+        return recipe.id != id
+    })
+
+    database.recipes = filteredRecipes
+
+    fs.writeFile("data.json", JSON.stringify(database, null, 2), err => {
+        if(err) return res.send("Write file error!")
+
+        return res.redirect("/admin/recipes")
+    })
+}

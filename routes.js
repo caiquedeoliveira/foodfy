@@ -19,6 +19,6 @@ routes.get("/", (req, res)=>{
 
     .post("/admin/recipes", recipes.post)
     .put("/admin/recipes", recipes.put)
-
+    .delete("/admin/recipes", recipes.delete)
 
 module.exports = routes
