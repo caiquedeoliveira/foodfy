@@ -47,7 +47,7 @@
             <div class="text-content">
                 <h2>Informações adicionais</h2>
             </div>
-            <p class="info recipe_info">{{recipe.informations}}</p>
+            <p class="info recipe_info">{{recipe.informations | striptags(true) | escape | nl2br}}</p>
         </div>
     </div>
 {% endblock %}
