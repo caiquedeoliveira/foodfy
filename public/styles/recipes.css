@@ -52,6 +52,10 @@
 }
 
 /* indiividual recipe page */
+.current-recipe {
+    margin-top: 55px;
+}
+
 .current-recipe .recipe-image img {
     width: 940px;
     height: 280px;

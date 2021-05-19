@@ -1,13 +1,8 @@
-{% extends "client-side/layout.njk" %}
+{% extends "server-side/layout.njk" %}
 
     {% block head%}
     <title>{{recipe.title}} | Foodfy</title>
     <link rel="stylesheet" href="/styles/recipes.css">
-    {% endblock %}
-
-    {% block nav%}
-    <a href="/about" class="link-about">Sobre</a>
-    <a href="/recipes" class="link-recipes">Receitas</a>
     {% endblock %}
 
 {% block content %}
@@ -17,7 +12,8 @@
             <a href="/admin/recipes/{{recipe.id}}/edit">Editar receita</a>
         </div>
         <div class="recipe-image">
-            <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}"></div>
+            <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
+        </div>
             <div class="recipe-title">
                 <p>{{ recipe.title }}</p>
             </div>

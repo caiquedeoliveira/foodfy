@@ -105,13 +105,13 @@ body {
     width: 100%;   
 }
 
-.admin-area .menu-logo {
+.admin-area .menu {
+    display: block;
     max-width: 940px;
-    margin: 0px 385px;
-    align-items: left;
+    margin: 26px auto;
+}
+
+.admin-area .menu-logo {
     cursor: unset;
 }
 
-.admin-area .menu-logo img {
-    text-align: start;
-}
