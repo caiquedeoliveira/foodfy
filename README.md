@@ -2,71 +2,36 @@
 
 # Foodfy Project
 
-Foodfy is an application designed by Rocketseat for the Launchbase Bootcamp.
+Foodfy is an application designed by Rocketseat for the Launchbase Bootcamp. This app allows the user to register, update and delete recipes.
 
-:brazil: Foodfy é uma aplicação projetada pela Rocketseat para o bootcamp Launchbase.
-
-<img src="./public/assets/readmegif.gif">
+:brazil: Foodfy é uma aplicação projetada pela Rocketseat para o bootcamp Launchbase. Essa aplicação permite ao usuário cadastrar, atualizar e deletar receitas.
 </div>
 
+## Client side 
+<img src="./public/assets/client-side.gif">
+
+- Home page 
+- About page
+- Recipes page
+
+### Resposivity: client side
+<img src="./public/assets/responsive-client-side.gif">
+
+<br/>
 <br/>
 
-### Techniques:
+## Administrative area of the app
+<img src="./public/assets/server-side.gif">
 
-- Template Engine (Nunjucks): dynamic data from a basic database (required in the server) instead of static data in .html/.njk.
+- List of all recipes registered in the database
+- Create recipe page
+- Edit recipe page (Delete or Update)
 
-- Query Strings: each recipe has its own page (localhost:5500/recipes/1, for example)
+For the delete part, i made a modal so the user can confirm that it really wants to delete the recipe.
 
-```js
-const recipes = require('./data')
+## Responsivity: administrative area
+<img src="./public/assets/responsive-server-side.gif">
+<br/>
 
-server.get("/recipes/:index", (req, res)=>{
-    const recipesList = [...recipes]
-    const recipeIndex = req.params.index
-
-    const currentRecipe = recipesList[recipeIndex - 1]
-    
-    if(!currentRecipe) {
-        return res.render("not-found")
-    }
-
-    return res.render("current-recipe", {items: currentRecipe})
-})
-```
-
-- JavaScript EventListener to redirect a recipe to its own page
-
-```js
-const recipes = document.querySelectorAll('.recipe')
-
-for(let i=0; i <= recipes.length; i++){
-    recipes[i].addEventListener('click', () => {
-        window.location.href = `/recipes/${i+1}`
-    })
-}
-```
-
-- JavaScript: control innerHTML (HIDE/SHOW) and toggle CSS classes
-
-```js
-const visibilityItems = document.querySelectorAll('.text-content p')
-const recipeInfo = document.querySelectorAll('.recipe_info')
-
-for(let button of visibilityItems){
-    button.addEventListener('click', () => {
-        if(button.innerHTML === "ESCONDER"){
-            button.innerHTML = "MOSTRAR"
-        } else {
-            button.innerHTML = "ESCONDER"
-        }
-    })
-}
-
-for (let button in visibilityItems){
-    visibilityItems[button].addEventListener('click', () => {
-      recipeInfo[button].classList.toggle('hidden')
-    })
-}
-```
 
 Developed by Caíque Rodrigues - Web Development Student :tada:
