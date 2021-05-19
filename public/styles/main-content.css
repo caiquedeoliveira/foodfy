@@ -111,7 +111,7 @@ body {
     margin: 26px auto;
 }
 
-.admin-area .menu-logo {
-    cursor: unset;
+.admin-area .menu-logo .logo {
+    cursor: pointer;
 }
 
