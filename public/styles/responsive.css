@@ -6,7 +6,7 @@
         margin-right: 40px;
     }
 
-    .intro {
+    .intro{
         width: 670px;
         margin: auto;
     }
@@ -28,7 +28,8 @@
         margin-top: 30px;
     }
 
-    .recipes{
+    .recipes,
+    .recipe-adm{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -43,4 +44,9 @@
         width: 600px;
         margin: auto;
     }
+
+    /*admin-area*/
+
+
+
 }

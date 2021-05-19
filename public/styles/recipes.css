@@ -163,7 +163,7 @@ h2.admin{
     font-weight: 500;
 }
 
-.recipe-adm .recipe .recipe-info .recipe-update p {
+.recipe-adm .recipe .recipe-info .recipe-view p {
     font-size: 14px;
     color: #6558C3;
     font-weight: bold;
@@ -172,7 +172,7 @@ h2.admin{
     cursor: pointer;
 }
 
-.recipe-adm .recipe .recipe-info .recipe-update p:hover {
+.recipe-adm .recipe .recipe-info .recipe-view p:hover {
     color: #3f2ebd;
     transition: 400ms;
 }
