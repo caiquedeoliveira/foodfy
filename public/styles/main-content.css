@@ -106,12 +106,17 @@ body {
 }
 
 .admin-area .menu {
-    display: block;
+    display: flex;
     max-width: 940px;
     margin: 26px auto;
 }
 
 .admin-area .menu-logo .logo {
     cursor: pointer;
+}
+
+.admin-area .menu .menu-links a  {
+    font-size: 15px;
+    color: #FFFFFF;
 }
 
