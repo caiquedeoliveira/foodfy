@@ -1,16 +1,17 @@
 const express = require('express')
 const routes = express.Router()
-const recipes = require('./controllers/recipes')
+const client = require('./app/controllers/client-side')
+const recipes = require('./app/controllers/recipes')
 
 
 routes.get("/", (req, res)=>{
         return res.redirect('/home')
     })
 
-    .get("/home", recipes.home)
-    .get("/about", recipes.about)
-    .get("/recipes", recipes.recipes_page)
-    .get("/recipes/:index", recipes.each_recipe)
+    .get("/home", client.home)
+    .get("/about", client.about)
+    .get("/recipes", client.recipes_page)
+    .get("/recipes/:index", client.each_recipe)
 
     .get("/admin/recipes", recipes.index)
     .get("/admin/recipes/create", recipes.create)
