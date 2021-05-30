@@ -1,1 +1,34 @@
 {% extends 'server-side/layout.njk' %}
+
+{% block head%}
+    <title>Administração de Chefs | Foodfy</title>
+    <link rel="stylesheet" href="/styles/chefs.css">
+{% endblock %}
+
+{% block content %}
+<h2 class="admin">Gerenciar Chefs</h2>
+
+<section class="chef-adm">
+
+    {% for chef in chefs %}
+    <div class="chef admin">
+        <div class="chef-image">
+            <img src="{{chef.image_url}}" alt="Imagem de {{chef.title}}">
+        </div>
+        <div class="chef-info">
+            <div class="chef-name">
+                <h3>{{chef.title}}</h3>
+            </div>
+            <div class="chef-author">
+                <p>por {{chef.chef}}</p>
+            </div>
+            <div class="chef-view">
+                <p>Visualizar</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<script src="/scripts/admin-index.js"></script>
+{% endblock %}

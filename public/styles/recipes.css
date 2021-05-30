@@ -181,6 +181,11 @@ h2.admin{
     transition: 400ms;
 }
 
+.chef-presentation {
+    margin-top: 50px;
+}
+
+.chef-presentation,
 .recipe-presentation {
     display: flex;
     align-items: center;
@@ -188,7 +193,8 @@ h2.admin{
     margin-bottom: 20px;
 }
 
-.recipe-presentation a {
+.recipe-presentation a,
+.chef-presentation a {
     font-size: 16px;
     color: #FFFFFF;
     background: #6558C3;
@@ -196,4 +202,12 @@ h2.admin{
     padding: 9px 20px;
     text-decoration: none;
     font-weight: 500;
+}
+
+/* CHEFS */
+
+.current-chef .chef-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
 }

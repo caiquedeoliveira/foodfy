@@ -1,1 +1,49 @@
 {% extends 'server-side/layout.njk' %}
+
+{% block head%}
+    <title>Edite receitas | Foodfy</title>
+    <link rel="stylesheet" href="/styles/create.css">
+{% endblock %}
+
+{% block content %}
+
+<form action="/admin/chefs?_method=PUT" method="post">
+    <fieldset>
+        <h2>Editando receita</h2>
+        <div class="edit-control">
+            <p>Deletar</p>
+            <button type="submit">Salvar receita</button>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="item">
+            <legend>Nome</legend>
+            <input type="text" name="name" value="{{chef.name}}">
+        </div>
+
+        <div class="item">
+            <legend>Imagem</legend>
+            <input type="url" name="avatar_url" value="{{chef.avatar_url}}">
+        </div>
+    </fieldset>
+
+    <input type="hidden" name="id" value="{{chef.id}}">
+</form>
+
+<div class="modal-overlay">
+    <div class="modal">
+        <div class="delete-message">
+            <h2>Deseja mesmo deletar sua receita?</h2>
+        </div>
+        <div class="delete-buttons">
+            <p>Cancelar</p>
+            <form id="form-delete" action="/admin/chefs?_method=DELETE" method="post">
+                <button type="submit">Deletar</button>
+                <input type="hidden" name="id" value="{{chef.id}}">
+            </form>
+        </div>
+    </div>
+</div>
+    <script src="/scripts/deleting-modal.js"></script>
+{% endblock %}

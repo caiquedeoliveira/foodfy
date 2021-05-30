@@ -1,1 +1,30 @@
 {% extends 'server-side/layout.njk' %}
+
+{% block head%}
+    <title>Crie sua conta | Foodfy</title>
+    <link rel="stylesheet" href="/styles/create.css">
+{% endblock %}
+
+{% block content %}
+
+<form action="/admin/chefs" method="post">
+    <fieldset>
+        <h2>Criando chef</h2>
+        <button type="submit">Salvar chef</button>
+    </fieldset>
+
+    <fieldset>
+        <div class="item">
+            <legend>Nome</legend>
+            <input type="text" name="name" value="{{recipe.name}}">
+        </div>
+
+        <div class="item">
+            <legend>Imagem</legend>
+            <input type="url" name="avatar_url" value="{{recipe.avatar_url}}">
+        </div>
+    </fieldset>
+</form>
+
+    <script src="/scripts/creating.js"></script>
+{% endblock %}

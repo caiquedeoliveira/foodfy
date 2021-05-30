@@ -18,7 +18,7 @@ module.exports = {
                 preparations,
                 informations,
                 created_at
-            ) VALUES ($1, $2, $3, $4, $5, %6)
+            ) VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING id
         `
 
@@ -47,11 +47,11 @@ module.exports = {
     update(data, callback){
         const query = `
             UPDATE recipes SET
-                image=(1$),
-                title=(2$),
-                ingredients=(3$),
-                preparations=(4$),
-                informations=(5$)
+                image=($1),
+                title=($2),
+                ingredients=($3),
+                preparations=($4),
+                informations=($5)
             WHERE id = $6
         `
 
