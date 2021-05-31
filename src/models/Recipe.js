@@ -14,17 +14,19 @@ module.exports = {
             INSERT INTO recipes (
                 image,
                 title,
+                chef_id,
                 ingredients,
                 preparations,
                 informations,
                 created_at
-            ) VALUES ($1, $2, $3, $4, $5, $6)
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id
         `
 
         const values = [
             data.image,
             data.title,
+            data.chef,
             data.ingredients,
             data.preparations,
             data.informations,
@@ -49,15 +51,17 @@ module.exports = {
             UPDATE recipes SET
                 image=($1),
                 title=($2),
-                ingredients=($3),
-                preparations=($4),
-                informations=($5)
-            WHERE id = $6
+                chef_id=($3),
+                ingredients=($4),
+                preparations=($5),
+                informations=($6)
+            WHERE id = $7
         `
 
         const values = [
             data.image,
             data.title,
+            data.chef,
             data.ingredients,
             data.preparations,
             data.informations,
@@ -75,6 +79,13 @@ module.exports = {
             if(err) throw `Database error! ${err}`
 
             return callback()
+        })
+    },
+    chefsSelectOptions(callback){
+        db.query(`SELECT name, id FROM chefs`, (err, results)=>{
+            if(err) throw `Database error! ${err}`
+            
+            callback(results.rows)
         })
     }
 }

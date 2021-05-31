@@ -4,13 +4,17 @@ module.exports = {
 index(req, res){
 
     Recipe.all(recipes => {
-        return res.render('server-side/recipes/admin-recipes', {recipes})
+        return res.render('server-side/recipes/index', {recipes})
     })
   
 },
 
 create(req, res){
-    return res.render('server-side/recipes/create-recipe')
+
+    Recipe.chefsSelectOptions(options => {
+        return res.render('server-side/recipes/create', {chefOptions: options})
+    })
+    
 },
 
 post(req, res){
@@ -31,7 +35,7 @@ show(req, res){
     Recipe.find(req.params.id, recipe => {
         if(!recipe) return res.render("client-side/not-found")
 
-        return res.render("server-side/recipes/current-recipe", {recipe})
+        return res.render("server-side/recipes/recipe", {recipe})
     })
 },
 
@@ -40,7 +44,7 @@ edit(req, res){
     Recipe.find(req.params.id, recipe => {
         if(!recipe) return res.render("client-side/not-found")
 
-        return res.render("server-side/recipes/recipe-edit", {recipe})
+        return res.render("server-side/recipes/edit", {recipe})
     })  
 },
 

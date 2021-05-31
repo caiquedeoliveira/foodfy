@@ -14,20 +14,8 @@
     </fieldset>
 
     <fieldset>
-        <div class="item">
-            <legend>Imagem da receita</legend>
-            <input type="url" name="image" value="{{recipe.image}}">
-        </div>
 
-        <div class="item">
-            <legend>Nome da receita</legend>
-            <input type="text" name="title" value="{{recipe.title}}">
-        </div>
-
-        <div class="item">
-            <legend>Nome do chef</legend>
-            <input type="text" name="chef" value="{{recipe.chef}}">
-        </div>
+        {% include 'server-side/recipes/fields.njk' %}
 
         <div class="item">
             <legend>Ingredientes</legend>

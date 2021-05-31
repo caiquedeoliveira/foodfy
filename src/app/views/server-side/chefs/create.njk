@@ -14,15 +14,8 @@
     </fieldset>
 
     <fieldset>
-        <div class="item">
-            <legend>Nome</legend>
-            <input type="text" name="name" value="{{recipe.name}}">
-        </div>
 
-        <div class="item">
-            <legend>Imagem</legend>
-            <input type="url" name="avatar_url" value="{{recipe.avatar_url}}">
-        </div>
+        {% include 'server-side/chefs/fields.njk' %}
     </fieldset>
 </form>
 

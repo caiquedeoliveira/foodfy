@@ -205,9 +205,32 @@ h2.admin{
 }
 
 /* CHEFS */
+.current-chef .chef-image {
+    text-align: center;
+    margin: 50px 0px 30px;
+    
+}
 
 .current-chef .chef-image img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
+}
+
+.current-chef .chef-title,
+.current-chef .chef-recipes {
+    text-align: center;
+}
+
+.current-chef .chef-title p {
+    font-size: 36px;
+    color: #111111;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.current-chef .chef-recipes p {
+    font-size: 20px;
+    color: #777777;
+    text-align: center;
 }

@@ -4,11 +4,11 @@ module.exports = {
     index(req, res){
 
         Chef.all(chefs => {
-            return res.render('server-side/chefs/admin-chefs', {chefs})
+            return res.render('server-side/chefs/index', {chefs})
         })
     },
     create(req, res){
-        return res.render('server-side/chefs/create-chefs')
+        return res.render('server-side/chefs/create')
 
     },
     post(req, res){
@@ -27,7 +27,7 @@ module.exports = {
         Chef.find(req.params.id, chef => {
             if(!chef) return res.render('client-side/not-found')
 
-            return res.render('server-side/chefs/current-chef', {chef})
+            return res.render('server-side/chefs/chef', {chef})
         })
 
     },
@@ -35,7 +35,7 @@ module.exports = {
         Chef.find(req.params.id, chef => {
             if(!chef) return res.render('client-side/not-found')
 
-            return res.render('server-side/chefs/chefs-edit', {chef})
+            return res.render('server-side/chefs/edit', {chef})
         })
 
     },

@@ -37,7 +37,8 @@ form fieldset:nth-child(2) .item legend {
 }
 
 form fieldset:nth-child(2) .item input,
-form fieldset:nth-child(2) .item textarea {
+form fieldset:nth-child(2) .item textarea,
+select {
     background: #FFFFFF;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
@@ -47,6 +48,19 @@ form fieldset:nth-child(2) .item textarea {
     font-weight: normal;
     font-size: 16px;
     color: #111111;
+}
+
+option:invalid {
+    color: #777;
+}
+
+option {
+    color: #111111;
+}
+
+option:disabled,
+select:invalid {
+    color: #777;
 }
 
 textarea {
