@@ -2,7 +2,7 @@
 
 {% block head%}
     <title>Administração de Chefs | Foodfy</title>
-    <link rel="stylesheet" href="/styles/chefs.css">
+    <link rel="stylesheet" href="/styles/recipes.css">
 {% endblock %}
 
 {% block content %}
@@ -13,14 +13,11 @@
     {% for chef in chefs %}
     <div class="chef admin">
         <div class="chef-image">
-            <img src="{{chef.image_url}}" alt="Imagem de {{chef.title}}">
+            <img src="{{chef.avatar_url}}" alt="Imagem de {{chef.name}}">
         </div>
         <div class="chef-info">
             <div class="chef-name">
-                <h3>{{chef.title}}</h3>
-            </div>
-            <div class="chef-author">
-                <p>por {{chef.chef}}</p>
+                <h3>{{chef.name}}</h3>
             </div>
             <div class="chef-view">
                 <p>Visualizar</p>
