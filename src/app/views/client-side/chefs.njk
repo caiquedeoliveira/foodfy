@@ -1,17 +1,11 @@
-{% extends 'server-side/layout.njk' %}
+{% extends "client-side/layout.njk" %}
 
-{% block head%}
-    <title>Administração de Chefs | Foodfy</title>
+    {% block head%}
+    <title>Chefs | Foodfy</title>
     <link rel="stylesheet" href="/styles/recipes.css">
-{% endblock %}
+    {% endblock %}
 
 {% block content %}
-
-<div class="create-new">
-    <h2 class="admin">Gerenciar Chefs</h2>
-    <a href="/admin/chefs/create">Novo chef</a>
-</div>
-
 <section class="chef-adm">
 
     {% for chef in chefs %}
@@ -31,5 +25,4 @@
     {% endfor %}
 </section>
 
-<script src="/scripts/admin-index.js"></script>
 {% endblock %}

@@ -48,6 +48,10 @@ body {
     position: relative;
 }
 
+.menu-links a + a {
+    margin-left: 30px;
+}
+
 .menu-links a::after {
     content: "";
     width: 0;
@@ -67,9 +71,7 @@ body {
     font-weight: bold;
 }
 
-.menu-links .link-about {
-    margin-right: 30px;
-}
+
 
 .footer {
     min-width: 100%;

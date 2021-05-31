@@ -11,6 +11,7 @@ routes.get("/", (req, res)=>{
     .get("/home", client.home)
     .get("/about", client.about)
     .get("/recipes", client.recipes_page)
+    .get("/chefs", client.chefs)
     .get("/recipes/:id", client.each_recipe)
 
     .get("/admin", (req, res)=>{

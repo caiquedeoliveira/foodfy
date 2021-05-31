@@ -1,4 +1,6 @@
 const Recipe = require('../../models/Recipe')
+const Chef = require('../../models/Chef')
+
 module.exports = {
     home(req, res) {
         Recipe.all(recipes => {
@@ -13,6 +15,13 @@ module.exports = {
     recipes_page(req, res) {
         Recipe.all(recipes => {
             return res.render('client-side/recipes', {recipes})
+        })
+    },
+
+    chefs(req, res){
+
+        Chef.all(chefs => {
+            return res.render('client-side/chefs', {chefs})
         })
     },
     

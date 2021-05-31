@@ -122,8 +122,22 @@
 
 /* ADMINISTRAÇÃO */
 
-h2.admin{
+
+.create-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 50px 0px 30px;
+}
+
+.create-new a {
+    font-size: 16px;
+    color: #FFFFFF;
+    background: #6558C3;
+    border-radius: 4px;
+    padding: 9px 20px;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .recipe-adm {
