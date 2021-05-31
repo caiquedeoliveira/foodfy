@@ -13,6 +13,10 @@ routes.get("/", (req, res)=>{
     .get("/recipes", client.recipes_page)
     .get("/recipes/:id", client.each_recipe)
 
+    .get("/admin", (req, res)=>{
+        return res.render("server-side/admin")
+    })
+
     .get("/admin/recipes", recipes.index)
     .get("/admin/recipes/create", recipes.create)
     .get("/admin/recipes/:id", recipes.show)
