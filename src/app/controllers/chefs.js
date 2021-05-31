@@ -26,8 +26,8 @@ module.exports = {
         
         Chef.find(req.params.id, chef => {
             if(!chef) return res.render('client-side/not-found')
-
             return res.render('server-side/chefs/chef', {chef})
+            
         })
 
     },

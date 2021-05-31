@@ -26,8 +26,8 @@ module.exports = {
     },
     
     each_recipe(req, res) {
-        Recipe.find(req.params.id, recipe => {
-            if(!recipe) return res.render("client-side/not-found")
+        Recipe.find(req.params.id, recipes => {
+            if(!recipes) return res.render("client-side/not-found")
     
             return res.render("client-side/current-recipe", {recipes})
         })

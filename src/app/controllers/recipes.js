@@ -44,7 +44,11 @@ edit(req, res){
     Recipe.find(req.params.id, recipe => {
         if(!recipe) return res.render("client-side/not-found")
 
-        return res.render("server-side/recipes/edit", {recipe})
+        Recipe.chefsSelectOptions( options => {
+            return res.render("server-side/recipes/edit", {recipe, chefOptions: options})
+        })
+
+        
     })  
 },
 
