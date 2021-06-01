@@ -1,4 +1,5 @@
 const Chef = require('../../models/Chef')
+const Recipe = require('../../models/Recipe')
 
 module.exports = {
     index(req, res){
@@ -26,7 +27,10 @@ module.exports = {
         
         Chef.find(req.params.id, chef => {
             if(!chef) return res.render('client-side/not-found')
-            return res.render('server-side/chefs/chef', {chef})
+            Chef.findChefRecipes(req.params.id, recipes => {
+                return res.render('server-side/chefs/chef', {chef, recipes})
+            })
+            
             
         })
 

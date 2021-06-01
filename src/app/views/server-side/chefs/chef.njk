@@ -22,24 +22,24 @@
             </div>
     </div>
 
-    <h2 class="admin">Receitas</h2>
+    <h2 class="admin-chef">Receitas</h2>
 
         <section class="recipe-adm">
 
             {% for recipe in recipes %}
             <div class="recipe admin">
                 <div class="recipe-image">
-                    <img src="{{recipe.image_url}}" alt="Imagem de {{recipe.title}}">
+                    <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
                 </div>
                 <div class="recipe-info">
                     <div class="recipe-name">
                         <h3>{{recipe.title}}</h3>
                     </div>
                     <div class="recipe-author">
-                        <p>por {{recipe.chef}}</p>
+                        <p>por {{chef.name}}</p>
                     </div>
                     <div class="recipe-view">
-                        <p>Visualizar</p>
+                        <a href="/admin/recipes/{{recipe.id}}">Visualizar</a>
                     </div>
                 </div>
             </div>
