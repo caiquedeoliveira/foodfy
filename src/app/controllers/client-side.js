@@ -21,13 +21,14 @@ module.exports = {
     chefs(req, res){
 
         Chef.all(chefs => {
+
             return res.render('client-side/chefs', {chefs})
         })
     },
     
     each_recipe(req, res) {
         Recipe.find(req.params.id, recipes => {
-            if(!recipes) return res.render("client-side/not-found")
+            if(!recipes) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
     
             return res.render("client-side/current-recipe", {recipes})
         })

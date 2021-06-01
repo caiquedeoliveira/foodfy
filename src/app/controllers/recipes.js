@@ -33,7 +33,7 @@ post(req, res){
 show(req, res){
     
     Recipe.find(req.params.id, recipe => {
-        if(!recipe) return res.render("client-side/not-found")
+        if(!recipe) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
 
         return res.render("server-side/recipes/recipe", {recipe})
     })
@@ -42,7 +42,7 @@ show(req, res){
 edit(req, res){
 
     Recipe.find(req.params.id, recipe => {
-        if(!recipe) return res.render("client-side/not-found")
+        if(!recipe) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
 
         Recipe.chefsSelectOptions( options => {
             return res.render("server-side/recipes/edit", {recipe, chefOptions: options})

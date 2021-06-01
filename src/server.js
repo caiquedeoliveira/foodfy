@@ -18,7 +18,7 @@ nunjucks.configure("src/app/views", {
 })
 
 server.use( (req, res) => {
-    res.status(404).render("client-side/not-found");
+    res.status(404).render("client-side/not-found", {message: "Ops, acho que você foi pelo caminho errado!"});
 });
 
 server.listen(5500, ()=>{

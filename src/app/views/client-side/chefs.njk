@@ -18,7 +18,13 @@
                 <h3>{{chef.name}}</h3>
             </div>
             <div class="chef-recipes">
-                <p>{{chef.total_recipes}} receitas</p>
+                <p>
+                {% if chef.total_recipes == 1 %}
+                    1 receita
+                {% else %}
+                    {{chef.total_recipes}} receitas 
+                {% endif %}
+                </p>
             </div>
         </div>
     </div>

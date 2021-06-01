@@ -26,7 +26,7 @@ module.exports = {
     show(req, res){
         
         Chef.find(req.params.id, chef => {
-            if(!chef) return res.render('client-side/not-found')
+            if(!chef) return res.render('client-side/not-found', {message: "Ops, chef não encontrado."})
             Chef.findChefRecipes(req.params.id, recipes => {
                 return res.render('server-side/chefs/chef', {chef, recipes})
             })
@@ -37,7 +37,7 @@ module.exports = {
     },
     edit(req, res){
         Chef.find(req.params.id, chef => {
-            if(!chef) return res.render('client-side/not-found')
+            if(!chef) return res.render('client-side/not-found', {message: "Ops, chef não encontrado."})
 
             return res.render('server-side/chefs/edit', {chef})
         })
@@ -55,9 +55,14 @@ module.exports = {
         })
     },
     delete(req, res){
-        Chef.delete(req.body.id, ()=>{
-            return res.redirect('/admin/chefs')
-        })
-
+        Chef.find(req.body.id, chef => {
+            if(chef.total_recipes >= 1){
+                return res.render('client-side/not-found', {message: "Chefs com receitas cadastradas não podem excluir seus perfis :("})
+            } else {
+                Chef.delete(req.body.id, () => {
+                    return res.redirect('/admin/chefs')
+                })
+            }
+        })      
     },
 }
