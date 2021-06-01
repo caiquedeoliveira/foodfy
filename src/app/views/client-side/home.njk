@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="/styles/recipes.css">
 {% endblock %}
 
+{% block addtolayout %}
+        <div class="filter">
+            <form action="/recipes" method="get">
+                <input 
+                type="text"
+                name="filter"
+                placeholder="Buscar uma receita">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+{% endblock addtolayout %}
+
 {% block content%}
     <div class="intro">
         <div class="intro-text">

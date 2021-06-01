@@ -24,6 +24,12 @@ body {
     margin: 0 auto 50px;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .menu {
     margin: 36px 0px 38px;
     display: flex;
@@ -71,6 +77,34 @@ body {
     font-weight: bold;
 }
 
+header form {
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    gap: 8px;
+    margin-right: 4px;
+}
+
+header form input {
+    padding: 9px;
+    font-size: 14px;
+    background: #FFFFFF;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #999999;
+    outline: none;
+}
+
+header form button {
+    background: #6558C3;
+    padding: 9px 20px;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
 
 
 .footer {
