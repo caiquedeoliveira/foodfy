@@ -1,4 +1,6 @@
-
+a {
+    text-decoration: none;
+}
 
 .wrapper h3{
     font-size: 24px;
@@ -205,14 +207,16 @@
     margin-left: 20px;
 }
 
-.recipe-adm .recipe .recipe-info .recipe-view p,
-.chef-adm .chef .chef-info .chef-view p {
+.recipe-adm .recipe .recipe-info .recipe-view a,
+.chef-adm .chef .chef-info .chef-view a {
     font-size: 14px;
     color: #6558C3;
     font-weight: bold;
     line-height: 24px;
     margin-top: 10px;
+    display: inline-block;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .recipe-adm .recipe .recipe-info .recipe-view p:hover {

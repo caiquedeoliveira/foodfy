@@ -24,6 +24,7 @@
         <h3>Mais acessadas</h3>
         <div class="recipes">
             {%for recipe in recipes %}
+            <a href="/recipes/{{recipe.id}}">
             <div class="recipe">
                 <div class="recipe-image">
                     <img src="{{recipe.image}}" alt="{{recipe.title}}">
@@ -32,9 +33,10 @@
                     <p>{{recipe.title}}</p>
                 </div>
                 <div class="recipe-author">
-                    <p>por {{recipe.chef}}</p>
+                    <p>por {{recipe.chef_name}}</p>
                 </div>
             </div>
+            </a>
             {% endfor %}
         </div>
     </div>
