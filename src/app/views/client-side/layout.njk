@@ -22,10 +22,11 @@
                 <a href="/chefs" class="link-chefs">Chefs</a>
             </div>
         </div>
-    {% block addtolayout %}
-    {% endblock addtolayout %}
+    {% block addtolayout %}{% endblock addtolayout %}
     </header>
     
+    {% block filtermessage %}{% endblock filtermessage %}
+
     {% block content %}{% endblock %}
     </div>
     

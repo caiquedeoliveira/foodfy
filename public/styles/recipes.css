@@ -91,6 +91,10 @@ h2.admin-chef {
     margin-bottom: 30px;
 }
 
+h2.filter {
+    margin-bottom: 20px;
+}
+
 .text-content p {
     font-size: 12px;
     color: #999999;
@@ -288,4 +292,26 @@ h2.admin-chef {
 .chef-adm .chef-recipes p {
     margin-top: 5px;
     font-size: 14px;
+}
+
+
+/* PAGINATION */
+
+.container {
+    display: grid;
+    grid-template: 1fr 64px / 1fr;
+}
+
+.container .pagination {
+    margin: 0;
+    align-self: end;
+    justify-self: center;
+}
+
+.pagination a,
+.pagination span {
+    color: #111111;
+    text-decoration: none;
+    font-size: 18px;
+    margin-right: 16px;
 }

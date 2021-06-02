@@ -11,13 +11,19 @@
                 <input 
                 type="text"
                 name="filter"
+                value="{{filter}}"
                 placeholder="Buscar uma receita">
                 <button type="submit">Buscar</button>
             </form>
         </div>
 {% endblock addtolayout %}
 
+    {% block filtermessage %}
+    <h2 class="filter">{{filtermessage}}</h2>
+    {% endblock filtermessage %}
+
     {% block content%}
+    <div class="container">
     <div class="wrapper">
         <div class="recipes">
            {%for recipe in recipes%}
@@ -39,4 +45,10 @@
         </div>
     </div>
 
+    <div class="pagination"
+    data-page={{pagination.page}}
+    data-total={{pagination.total}}
+    data-filter={{filter}}
+    ></div>
+    </div>
     {% endblock %}

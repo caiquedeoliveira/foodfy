@@ -13,9 +13,28 @@ module.exports = {
     },
     
     recipes_page(req, res) {
-        Recipe.all(recipes => {
-            return res.render('client-side/recipes', {recipes})
-        })
+
+        let {filter, page, limit} = req.query
+
+        page = page || 1
+        limit = limit || 6
+        let offset = limit * (page - 1)
+
+        const params = {
+            filter,
+            limit,
+            page,
+            offset,
+            callback(recipes){
+                const pagination = {
+                    total: Math.ceil(recipes[0].total / limit), 
+                    page
+                }
+                return res.render('client-side/recipes', {recipes, filter, pagination, filtermessage: `Buscando por "${filter}"`})
+            }
+        }
+
+        Recipe.paginate(params)   
     },
 
     chefs(req, res){

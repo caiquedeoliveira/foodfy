@@ -52,6 +52,18 @@ module.exports = {
             callback(results.rows[0])
         })
     }, 
+    findBy(filter, callback){
+        db.query(`SELECT recipes.*, count(recipes) AS total_recipes, chefs.name AS chef_name
+                FROM recipes
+                LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+                WHERE recipes.title ILIKE '%${filter}%'
+                GROUP BY recipes.id, chefs.name
+                `, (err, results) => {
+                    if(err) throw `Database error ${err}`
+
+                    callback(results.rows)
+                })
+    },
     update(data, callback){
         const query = `
             UPDATE recipes SET
@@ -91,6 +103,40 @@ module.exports = {
         db.query(`SELECT name, id FROM chefs`, (err, results)=>{
             if(err) throw `Database error! ${err}`
             
+            callback(results.rows)
+        })
+    },
+    paginate(params){
+        const {filter, limit, offset, callback} = params
+
+        let query = "",
+            filterQuery = "",
+            totalQuery = `(
+                SELECT count(*) FROM recipes
+            ) AS total`
+
+        if(filter){
+            filterQuery = `
+                WHERE recipes.title ILIKE '%${filter}%'
+            `
+
+            totalQuery = `(
+                SELECT count(*) FROM recipes
+                ${filterQuery}
+            ) AS total`
+        }
+
+        query = `
+            SELECT recipes.*, ${totalQuery}, chefs.name AS chef_name
+            FROM recipes
+            LEFT JOIN chefs ON (recipes.chef_id = chefs.id)
+            ${filterQuery}
+            GROUP BY recipes.id, chefs.name LIMIT $1 OFFSET $2
+        `
+
+        db.query(query, [limit, offset], (err, results) => {
+            if(err) throw `Database error! ${err}`
+
             callback(results.rows)
         })
     }
