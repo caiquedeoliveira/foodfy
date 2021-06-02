@@ -1,4 +1,3 @@
-
 form {
     width: 940px;
     margin: 0 auto;
@@ -50,7 +49,6 @@ form fieldset:nth-child(2) .item textarea,
     color: #111111;
 }
 
-.select,
 .select option:first-child {
     cursor: pointer;
     color: #777;

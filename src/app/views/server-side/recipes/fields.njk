@@ -13,10 +13,8 @@
             <select class="select" name="chef">
                 <option value="" disabled selected>Selecione um chef</option>
                 {% for chef in chefOptions %}
-                <option value="{{chef.id}}">
-                    {% if recipe.chef_id == chef.id %}
-                        selected
-                    {% endif %}
+                <option value="{{chef.id}}"
+                {% if recipe.chef_id == chef.id %} selected {% endif %} >
                     {{chef.name}}
                 </option>
                 {% endfor %}
