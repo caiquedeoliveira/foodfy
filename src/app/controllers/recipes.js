@@ -1,58 +1,61 @@
 const Recipe = require('../../models/Recipe')
 
 module.exports = {
-index(req, res){
+async index(req, res){
 
-    Recipe.all(recipes => {
-        return res.render('server-side/recipes/index', {recipes})
-    })
+    let results = await Recipe.all()
+    const recipes = results.rows
+
+    return res.render('server-side/recipes/index', {recipes})
+},
+async create(req, res){
+
+    let results = await Recipe.chefsSelectOptions()
+    let options = results.rows
+   
+    return res.render('server-side/recipes/create', {options})
   
 },
-
-create(req, res){
-
-    Recipe.chefsSelectOptions(options => {
-        return res.render('server-side/recipes/create', {chefOptions: options})
-    })
-    
-},
-
-post(req, res){
+async post(req, res){
     const keys = Object.keys(req.body)
 
     for(key of keys){
         if(req.body[key] == "") return res.send('Please, fill all the fields!')
     }
 
-   Recipe.create(req.body, recipe => {
-       return res.redirect(`/admin/recipes/${recipe.id}`)
-   })
+    let results = await Recipe.create(req.body)
+    const recipeId = results.rows[0].id
 
+    results = await Recipe.chefsSelectOptions()
+    let options = results.rows
+
+    return res.redirect(`/admin/recipes/${recipeId}`, {options})
+   
 },
-
-show(req, res){
+async show(req, res){
     
-    Recipe.find(req.params.id, recipe => {
-        if(!recipe) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
+    let results = await Recipe.find(req.params.id)
+    const recipe = results.rows[0]
 
-        return res.render("server-side/recipes/recipe", {recipe})
-    })
+    if(!recipe) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
+
+    return res.render("server-side/recipes/recipe", {recipe})
+   
 },
+async edit(req, res){
 
-edit(req, res){
+    let results = await Recipe.find(req.params.id)
+    const recipe = results.rows[0]
 
-    Recipe.find(req.params.id, recipe => {
-        if(!recipe) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
+    if(!recipe) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
 
-        Recipe.chefsSelectOptions( options => {
-            return res.render("server-side/recipes/edit", {recipe, chefOptions: options})
-        })
+    results = await Recipe.chefsSelectOptions()
+    const options = results.rows
 
-        
-    })  
+    return res.render("server-side/recipes/edit", {recipe,  options})
+
 },
-
-put(req, res){
+async put(req, res){
 
     const keys = Object.keys(req.body)
 
@@ -60,14 +63,15 @@ put(req, res){
         if(req.body[key] == "") return res.send('Please, fill all the fields!')
     }
 
-    Recipe.update(req.body, ()=>{
-        return res.redirect(`/admin/recipes/${req.body.id}`)
-    })
+    await Recipe.update(req.body)
+
+    return res.redirect(`/admin/recipes/${req.body.id}`)
 
 },
-delete(req, res){
-   Recipe.delete(req.body.id, ()=> {
-       return res.redirect('/admin/recipes')
-   })
+async delete(req, res){
+
+    await Recipe.delete(req.body.id)
+
+    return res.redirect('/admin/recipes')
 }
 }

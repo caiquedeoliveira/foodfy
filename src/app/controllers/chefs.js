@@ -1,68 +1,71 @@
 const Chef = require('../../models/Chef')
-const Recipe = require('../../models/Recipe')
 
 module.exports = {
-    index(req, res){
+    async index(req, res){
+        let results = await Chef.all()
+        const chefs = results.rows
+        
+        return res.render('server-side/chefs/index', {chefs})
 
-        Chef.all(chefs => {
-            return res.render('server-side/chefs/index', {chefs})
-        })
     },
     create(req, res){
         return res.render('server-side/chefs/create')
-
     },
-    post(req, res){
+    async post(req, res){
         const keys = Object.keys(req.body)
         for(key of keys){
             if(req.body[key] == "") return res.send('Fill all the fields')
         }
 
-        Chef.create(req.body, chef => {
-            return res.redirect(`/admin/chefs/${chef.id}`)
-        })
+        let results = await Chef.create(req.body)
+        const chefId = results.rows[0].id
 
+        return res.redirect(`/admin/chefs/${chefId}`)
     },
-    show(req, res){
+    async show(req, res){
         
-        Chef.find(req.params.id, chef => {
-            if(!chef) return res.render('client-side/not-found', {message: "Ops, chef não encontrado."})
-            Chef.findChefRecipes(req.params.id, recipes => {
-                return res.render('server-side/chefs/chef', {chef, recipes})
-            })
-            
-            
-        })
+        let results = await Chef.find(req.params.id)
+        const chef = results.rows[0]
+
+        if(!chef) return res.render('client-side/not-found', {message: "Ops, chef não encontrado."})
+
+        results = await Chef.findChefRecipes(req.params.id)
+        const recipes = results.rows
+
+        return res.render('server-side/chefs/chef', {chef, recipes})
 
     },
-    edit(req, res){
-        Chef.find(req.params.id, chef => {
-            if(!chef) return res.render('client-side/not-found', {message: "Ops, chef não encontrado."})
+    async edit(req, res){
 
-            return res.render('server-side/chefs/edit', {chef})
-        })
+        let results = await Chef.find(req.params.id)
+        const chef = results.rows[0]
+
+        if(!chef) return res.render('client-side/not-found', {message: "Ops, chef não encontrado."})
+
+        return res.render('server-side/chefs/edit', {chef})
 
     },
-    put(req, res){
+    async put(req, res){
         const keys = Object.keys(req.body)
 
         for(key of keys){
             if(req.body[key] == "") return res.send("Fill all the fields")
         }
 
-        Chef.update(req.body, ()=>{
-            return res.redirect(`/admin/chefs/${req.body.id}`)
-        })
+        await Chef.update(req.body)
+        
+         return res.redirect(`/admin/chefs/${req.body.id}`)
     },
-    delete(req, res){
-        Chef.find(req.body.id, chef => {
-            if(chef.total_recipes >= 1){
-                return res.render('client-side/not-found', {message: "Chefs com receitas cadastradas não podem excluir seus perfis :("})
-            } else {
-                Chef.delete(req.body.id, () => {
-                    return res.redirect('/admin/chefs')
-                })
-            }
-        })      
+    async delete(req, res){
+        let results = await Chef.find(req.body.id)
+        const chef = results.rows[0]
+
+        if(chef.total_recipes >= 1){
+            return res.render('client-side/not-found', {message: "Chefs com receitas cadastradas não podem excluir seus perfis :("})
+        } else {
+            await Chef.delete(req.body.id)
+
+            return res.redirect('/admin/recipes')
+        }   
     },
 }

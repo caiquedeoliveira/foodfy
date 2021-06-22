@@ -1,7 +1,4 @@
-        <div class="item">
-            <legend>Imagem da receita</legend>
-            <input type="url" name="image" value="{{recipe.image}}">
-        </div>
+
 
         <div class="item">
             <legend>Nome da receita</legend>
@@ -12,7 +9,7 @@
             <legend>Chef</legend>
             <select class="select" name="chef">
                 <option value="" disabled selected>Selecione um chef</option>
-                {% for chef in chefOptions %}
+                {% for chef in options %}
                 <option value="{{chef.id}}"
                 {% if recipe.chef_id == chef.id %} selected {% endif %} >
                     {{chef.name}}
