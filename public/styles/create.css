@@ -35,7 +35,7 @@ form fieldset:nth-child(2) .item legend {
     margin-bottom: 30px;
 }
 
-form fieldset:nth-child(2) .item input,
+form fieldset:nth-child(2) .item input[type="text"],
 form fieldset:nth-child(2) .item textarea,
 .select {
     background: #FFFFFF;
@@ -100,6 +100,82 @@ input + input {
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
+}
+
+
+/* IMAGE UPLOAD */
+form .item #photos-upload {
+    position: relative;
+    display: block;
+    width: 115px;
+    overflow: hidden;
+}
+
+form .item #photos-upload i.material-icons {
+    font-size: 48px;
+    color: #777;
+    border: 1px solid #DDDDDD;
+    padding: 32px;
+    text-align: center;
+    cursor: pointer;
+}
+
+form .item #photos-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+form .item #photos-preview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 8px;
+    width: 100%;
+    margin: 8px 0;
+}
+
+form .item #photos-preview img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+#photos-preview .photo {
+    position: relative;
+}
+
+#photos-preview .photo i {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(255,255, 255, 0.8);
+    color: red;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 500%;
+    cursor: pointer;
+
+    transition: opacity 400ms;
+
+    opacity: 0;
+}
+
+#photos-preview .photo:hover i{
+    opacity: 1;
 }
 
 
