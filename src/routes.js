@@ -3,6 +3,7 @@ const routes = express.Router()
 const client = require('./app/controllers/client-side')
 const recipes = require('./app/controllers/recipes')
 const chefs = require('./app/controllers/chefs')
+const multer = require('./app/middleware/multer')
 
 routes.get("/", (req, res)=>{
         return res.redirect('/home')
@@ -23,8 +24,8 @@ routes.get("/", (req, res)=>{
     .get("/admin/recipes/:id", recipes.show)
     .get("/admin/recipes/:id/edit", recipes.edit)
 
-    .post("/admin/recipes", recipes.post)
-    .put("/admin/recipes", recipes.put)
+    .post("/admin/recipes", multer.array("photos", 5), recipes.post)
+    .put("/admin/recipes", multer.array("photos", 5), recipes.put)
     .delete("/admin/recipes", recipes.delete)
 
     .get("/admin/chefs", chefs.index)
