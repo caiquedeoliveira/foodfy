@@ -7,7 +7,15 @@ async index(req, res){
     let results = await Recipe.all()
     const recipes = results.rows
 
-    return res.render('server-side/recipes/index', {recipes})
+    results = await Recipe.files(recipes.id)
+    let files = results.rows
+
+    files = files.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+    }))
+
+    return res.render('server-side/recipes/index', {recipes, files})
 },
 async create(req, res){
 

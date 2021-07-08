@@ -7,8 +7,31 @@
 
 {% block content %}
     <div class="current-recipe">
-        <div class="recipe-image">
-            <img src="{{ recipes.image }}" alt="{{ recipes.title }}"></div>
+
+        <div class="gallery">
+            <div class="highlight">
+                {% if not files[0] %}
+                    <img src="http://placehold.it/500x500?text=PRODUTO SEM FOTO">
+                {% else %}
+                <div class="recipe-image">
+                    <img src="{{ files[0].src }}" alt="{{ files[0].name }}">
+                </div>
+                {% endif %}
+            </div>
+           
+           <div class="gallery-preview">
+                {% for image in files %}
+                    <img 
+                        src="{{image.src}}" 
+                        alt="{{image.name}}"
+                        {% if loop.index0 == 0 %}
+                            class="active"
+                        {% endif %}
+                        >
+                {% endfor %}
+            </div>
+        </div>
+
             <div class="recipe-title">
                 <p>{{ recipes.title }}</p>
             </div>

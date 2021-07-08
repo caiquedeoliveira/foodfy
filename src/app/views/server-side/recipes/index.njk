@@ -16,11 +16,14 @@
     {% for recipe in recipes %}
     <div class="recipe admin">
         
-        <div class="recipe-image"> 
-            
-            <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+         {% if not files[0] %}
+                    <img src="http://placehold.it/180x100?text=PRODUTO SEM FOTO">
+                {% else %}
+                <div class="recipe-image">
+                    <img src="{{ files[0].src }}" alt="{{ files[0].name }}">
+                </div>
+        {% endif %}
 
-        </div>
         <div class="recipe-info">
             <div class="recipe-name">
                 <h3>{{recipe.title}}</h3>

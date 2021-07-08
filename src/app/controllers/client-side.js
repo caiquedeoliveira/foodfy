@@ -48,7 +48,15 @@ module.exports = {
 
         if(!recipes) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
 
-        return res.render("client-side/current-recipe", {recipes})
+        results = await Recipe.files(recipes.id)
+        let files = results.rows
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
+
+        return res.render("client-side/current-recipe", {recipes, files})
            
     }
     

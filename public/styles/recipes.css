@@ -51,7 +51,29 @@ a {
     height: 140px;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
+    object-fit: cover;
 }
+
+.gallery-preview {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 8px;
+}
+
+.gallery-preview img {
+    height: 100px;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.gallery-preview img:hover,
+.gallery-preview img.active {
+    opacity: 1;
+} 
+
 
 /* indiividual recipe page */
 .current-recipe {
@@ -180,7 +202,8 @@ h2.filter {
     width: 172px;
     height: 90px;
     border-radius: 8.57px;
-    margin-right: 20px;  
+    margin-right: 20px;
+    
 }
 
 .chef-adm .chef-image img {
