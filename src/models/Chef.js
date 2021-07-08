@@ -13,16 +13,14 @@ module.exports = {
         const query = `
             INSERT INTO chefs (
                 name,
-                created_at,
-                file_id
-            ) VALUES ($1, $2, $3)
+                created_at
+            ) VALUES ($1, $2)
             RETURNING id
         `
 
         const values = [
             data.name,
             date(Date.now()).iso,
-            data.file
         ]
 
         return db.query(query, values)
@@ -61,5 +59,10 @@ module.exports = {
     },
     delete(id){
         return db.query(`DELETE FROM chefs WHERE id = $1`, [id])
+    },
+    files(id){
+        return db.query(`
+            SELECT * FROM chef_files WHERE chef_id = $1
+        `, [id])
     }
 }

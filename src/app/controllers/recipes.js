@@ -29,15 +29,8 @@ async post(req, res){
     let results = await Recipe.create(req.body)
     const recipeId = results.rows[0].id
 
-    const filesPromise = req.files.map(file => RecipeFiles.create({...file}))
-    const fileResults = await Promise.all(filesPromise)
-
-    const recipeFiles = fileResults.map(file => {
-        const fileId = file.rows[0].id
-        RecipeFiles.createFileInsert(fileId, recipeId)
-    })
-
-    await Promise.all(recipeFiles)
+    const filesPromise = req.files.map(file => RecipeFiles.create({...file, recipe_id: recipeId}))
+    await Promise.all(filesPromise)
 
     return res.redirect(`/admin/recipes/${recipeId}`)
    
@@ -49,7 +42,15 @@ async show(req, res){
 
     if(!recipe) return res.render("client-side/not-found", {message: "Ops, receita não encontrada."})
 
-    return res.render("server-side/recipes/recipe", {recipe})
+    results = await Recipe.files(recipe.id)
+    let files = results.rows
+
+    files = files.map(file => ({
+        ...file,
+        src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+    }))
+
+    return res.render("server-side/recipes/recipe", {recipe, files})
    
 },
 async edit(req, res){
@@ -78,7 +79,24 @@ async put(req, res){
     const keys = Object.keys(req.body)
 
     for(key of keys){
-        if(req.body[key] == "") return res.send('Please, fill all the fields!')
+        if(req.body[key] == "" && key != "removed_files") return res.send('Please, fill all the fields!')
+    }
+    
+    if(req.files.length != 0){
+        const newFilesPromise = req.files.map(file => RecipeFiles.create({...file, recipe_id: req.body.id}))
+        
+        await Promise.all(newFilesPromise)
+    }
+
+
+    if(req.body.removed_files){
+        const removedFiles = req.body.removed_files.split(",")
+        const lastIndex = removedFiles.length - 1
+        removedFiles.splice(lastIndex, 1)
+
+        const removedFilesPromise = removedFiles.map(id => RecipeFiles.delete(id))
+        
+        await Promise.all(removedFilesPromise)
     }
 
     await Recipe.update(req.body)

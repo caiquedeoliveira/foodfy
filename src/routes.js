@@ -33,8 +33,8 @@ routes.get("/", (req, res)=>{
     .get("/admin/chefs/:id", chefs.show)
     .get("/admin/chefs/:id/edit", chefs.edit)
 
-    .post("/admin/chefs", chefs.post)
-    .put("/admin/chefs", chefs.put)
+    .post("/admin/chefs", multer.array("avatar", 1), chefs.post)
+    .put("/admin/chefs", multer.array("avatar", 1), chefs.put)
     .delete("/admin/chefs", chefs.delete)
 
 module.exports = routes

@@ -1,4 +1,5 @@
 const Chef = require('../../models/Chef')
+const ChefFiles = require('../../models/ChefFiles')
 
 module.exports = {
     async index(req, res){
@@ -17,8 +18,13 @@ module.exports = {
             if(req.body[key] == "") return res.send('Fill all the fields')
         }
 
+        if(req.files.length == 0) return res.render("client-side/not-found", {message: "Envie pelo menos 1 imagem de avatar."})
+
         let results = await Chef.create(req.body)
         const chefId = results.rows[0].id
+
+        const filePromise = req.files.map( file => ChefFiles.create({...file, chef_id: chefId }))
+        await Promise.all(filePromise)
 
         return res.redirect(`/admin/chefs/${chefId}`)
     },
@@ -42,7 +48,15 @@ module.exports = {
 
         if(!chef) return res.render('client-side/not-found', {message: "Ops, chef não encontrado."})
 
-        return res.render('server-side/chefs/edit', {chef})
+        results = await Chef.files(chef.id)
+        let files = results.rows
+
+        files = files.map(file => ({
+            ...file,
+            src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
+        }))
+
+        return res.render('server-side/chefs/edit', {chef, files})
 
     },
     async put(req, res){
