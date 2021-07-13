@@ -27,6 +27,7 @@
                         {% if loop.index0 == 0 %}
                             class="active"
                         {% endif %}
+                        onclick="ImageGallery.setImage(event)"
                         >
                 {% endfor %}
             </div>
@@ -74,4 +75,5 @@
 
     
     <script src="/scripts/show-hide.js"></script>
+    <script src="/scripts/lightbox.js"></script>
 {% endblock %}

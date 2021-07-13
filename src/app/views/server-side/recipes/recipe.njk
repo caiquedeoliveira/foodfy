@@ -31,6 +31,7 @@
                         {% if loop.index0 == 0 %}
                             class="active"
                         {% endif %}
+                        onclick="ImageGallery.setImage(event)"
                         >
                 {% endfor %}
             </div>
@@ -72,4 +73,6 @@
             <p class="info recipe_info">{{recipe.informations | striptags(true) | escape | nl2br}}</p>
         </div>
     </div>
+
+    <script src="/scripts/lightbox.js"></script>
 {% endblock %}
