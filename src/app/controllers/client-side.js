@@ -76,7 +76,26 @@ module.exports = {
     async chefs(req, res){
         let results = await Chef.all()
         const chefs = results.rows
-        return res.render('client-side/chefs', {chefs})
+    
+    
+        if(!chefs) return res.render("client-side/not-found", {message: "Nenhum chef foi encontrado."})
+    
+        async function getImage(chefId){
+            let results = await Chef.files(chefId)
+            const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    
+            return files[0]
+        }
+        
+        const chefsPromise = chefs.map(async chef => {
+            chef.img = await getImage(chef.id)
+            return chef
+        })
+    
+        const lastAdded = await Promise.all(chefsPromise)
+    
+    
+        return res.render('client-side/chefs', {chefs: lastAdded})
     },
     async each_recipe(req, res){
 

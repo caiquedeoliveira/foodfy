@@ -12,7 +12,8 @@
             <a href="/admin/chefs/{{chef.id}}/edit">Editar chef</a>
         </div>
         <div class="chef-image">
-            <img src="{{ chef.avatar_url }}" alt="{{ chef.name }}">
+            <img src="{{ files[0].src }}" 
+                alt="{{ chef.name }}">
         </div>
             <div class="chef-title">
                 <p>{{ chef.name }}</p>
@@ -35,7 +36,7 @@
             {% for recipe in recipes %}
             <div class="recipe admin">
                 <div class="recipe-image">
-                    <img src="{{recipe.image}}" alt="Imagem de {{recipe.title}}">
+                    <img src="{{recipe.img if recipe.img else '//placehold.it/500x200'}}" alt="">
                 </div>
                 <div class="recipe-info">
                     <div class="recipe-name">

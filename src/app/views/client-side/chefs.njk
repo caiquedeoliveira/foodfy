@@ -11,7 +11,7 @@
     {% for chef in chefs %}
     <div class="chef admin">
         <div class="chef-image">
-            <img src="{{chef.avatar_url}}" alt="Imagem de {{chef.name}}">
+            <img src="{{chef.img if chef.img else '//placehold.it/500x200'}}" alt="Imagem de {{chef.name}}">
         </div>
         <div class="chef-info">
             <div class="chef-name">
