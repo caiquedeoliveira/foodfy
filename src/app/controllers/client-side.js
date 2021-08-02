@@ -3,22 +3,59 @@ const Chef = require('../../models/Chef')
 
 module.exports = {
     async home(req, res) {
-
         let results = await Recipe.all()
         const recipes = results.rows
+    
+    
+        if(!recipes) return res.render("client-side/not-found", {message: "Nenhuma receita foi encontrada."})
+    
+        async function getImage(recipeId){
+            let results = await Recipe.files(recipeId)
+            const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    
+            return files[0]
+        }
         
-        return res.render('client-side/home', {recipes})  
+        const recipesPromise = recipes.map(async recipe => {
+            recipe.img = await getImage(recipe.id)
+            return recipe
+        })
+    
+        const lastAdded = await Promise.all(recipesPromise)
+    
+        
+        return res.render('client-side/home', {recipes: lastAdded})  
     },
     about(req, res) {
         return res.render('client-side/about')
     }, 
-    recipes_page(req, res) {
+    async recipes_page(req, res) {
 
         let {filter, page, limit} = req.query
 
         page = page || 1
         limit = limit || 6
         let offset = limit * (page - 1)
+
+        let results = await Recipe.all()
+        const recipes = results.rows
+    
+    
+        if(!recipes) return res.render("client-side/not-found", {message: "Nenhuma receita foi encontrada."})
+    
+        async function getImage(recipeId){
+            let results = await Recipe.files(recipeId)
+            const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+    
+            return files[0]
+        }
+        
+        const recipesPromise = recipes.map(async recipe => {
+            recipe.img = await getImage(recipe.id)
+            return recipe
+        })
+    
+        const lastAdded = await Promise.all(recipesPromise)
 
         const params = {
             filter,
@@ -30,7 +67,7 @@ module.exports = {
                     total: Math.ceil(recipes[0].total / limit), 
                     page
                 }
-                return res.render('client-side/recipes', {recipes, filter, pagination, filtermessage: `Buscando por "${filter}"`})
+                return res.render('client-side/recipes', {recipes: lastAdded, filter, pagination, filtermessage: `Buscando por "${filter}"`})
             }
         }
 

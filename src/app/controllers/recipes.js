@@ -7,15 +7,24 @@ async index(req, res){
     let results = await Recipe.all()
     const recipes = results.rows
 
-    results = await Recipe.files(recipes.id)
-    let files = results.rows
 
-    files = files.map(file => ({
-        ...file,
-        src: `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`
-    }))
+    if(!recipes) return res.render("client-side/not-found", {message: "Nenhuma receita foi encontrada."})
 
-    return res.render('server-side/recipes/index', {recipes, files})
+    async function getImage(recipeId){
+        let results = await Recipe.files(recipeId)
+        const files = results.rows.map(file => `${req.protocol}://${req.headers.host}${file.path.replace("public", "")}`)
+
+        return files[0]
+    }
+    
+    const recipesPromise = recipes.map(async recipe => {
+        recipe.img = await getImage(recipe.id)
+        return recipe
+    })
+
+    const lastAdded = await Promise.all(recipesPromise)
+
+    return res.render('server-side/recipes/index', {recipes: lastAdded})
 },
 async create(req, res){
 

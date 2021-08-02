@@ -30,7 +30,7 @@
            <a href="/recipes/{{recipe.id}}">
             <div class="recipe">
                 <div class="recipe-image">
-                    <img src="{{recipe.image}}" alt="{{recipe.title}}">
+                     <img src="{{recipe.img if recipe.img else '//placehold.it/500x200'}}" alt="{{recipe.title}}">
                 </div>
                 <div class="recipe-title">
                     <p>{{recipe.title}}</p>
